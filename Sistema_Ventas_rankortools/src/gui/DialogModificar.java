@@ -3,6 +3,7 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JDialog;
+import java.awt.Color;
 
 public class DialogModificar extends JDialog {
 
@@ -29,6 +30,7 @@ public class DialogModificar extends JDialog {
 	 * Create the dialog.
 	 */
 	public DialogModificar() {
+		setBackground(new Color(255, 235, 205));
 		setTitle("Modificar Stock");
 		setBounds(100, 100, 454, 326);
 
