@@ -11,10 +11,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-<<<<<<< HEAD
-public class Principal extends JFrame 
-{
-=======
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
@@ -23,7 +19,6 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 public class Principal extends JFrame implements ActionListener {
->>>>>>> branch 'master' of https://github.com/Jeremy-Cldrn/EP_PROYECTO_FINAL
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
