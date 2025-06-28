@@ -27,7 +27,7 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class DialogProductos extends JFrame implements ActionListener {
+public class FrmProductos extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -39,7 +39,7 @@ public class DialogProductos extends JFrame implements ActionListener {
 	private JLabel lblPrecio;
 	private JTextField txtPrecio;
 	private JScrollPane scrollPane;
-	private JTable table;
+	private JTable tblProductos;
 	private JButton btnAdicionar;
 	private JButton btnModificar;
 	private JButton btnEliminar;
@@ -54,8 +54,9 @@ public class DialogProductos extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DialogProductos frame = new DialogProductos();
+					FrmProductos frame = new FrmProductos();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,7 +67,7 @@ public class DialogProductos extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public DialogProductos() {
+	public FrmProductos() {
 		setTitle("Productos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 637, 450);
@@ -119,32 +120,42 @@ public class DialogProductos extends JFrame implements ActionListener {
 		scrollPane.setBounds(27, 145, 574, 208);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		tblProductos = new JTable();
+		scrollPane.setViewportView(tblProductos);
 		modeloProducto = new DefaultTableModel();
 		modeloProducto.addColumn("Código");
 		modeloProducto.addColumn("Categoria"); 
 		modeloProducto.addColumn("Producto");
 		modeloProducto.addColumn("Precio");
-		table.setModel(modeloProducto);
+		tblProductos.setModel(modeloProducto);
+		
+		tblProductos.getSelectionModel().addListSelectionListener(e -> {
+	            if (!e.getValueIsAdjusting() && tblProductos.getSelectedRow() != -1) {
+	                int fila = tblProductos.getSelectedRow();
+	                txtCodigo.setText(tblProductos.getValueAt(fila, 0).toString());
+	                cmbCategoria.setSelectedItem(tblProductos.getValueAt(fila, 1).toString());
+	                cmbProductos.setSelectedItem(tblProductos.getValueAt(fila, 2).toString());
+	                txtPrecio.setText(tblProductos.getValueAt(fila, 3).toString());
+	            }
+	        });
 		
 		
 		btnAdicionar = new JButton("ADICIONAR");
 		btnAdicionar.addActionListener(this);
 		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAdicionar.setBounds(78, 376, 105, 21);
+		btnAdicionar.setBounds(70, 376, 114, 21);
 		contentPane.add(btnAdicionar);
 		
 		btnModificar = new JButton("MODIFICAR");
 		btnModificar.addActionListener(this);
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnModificar.setBounds(261, 376, 105, 21);
+		btnModificar.setBounds(254, 376, 114, 21);
 		contentPane.add(btnModificar);
 		
 		btnEliminar = new JButton("ELIMINAR");
 		btnEliminar.addActionListener(this);
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEliminar.setBounds(444, 376, 98, 21);
+		btnEliminar.setBounds(438, 376, 114, 21);
 		contentPane.add(btnEliminar);
 		
 		cmbCategoria = new JComboBox<>();
@@ -213,9 +224,44 @@ public class DialogProductos extends JFrame implements ActionListener {
 		limpiar();
 	}
 	protected void actionPerformedBtnModificar(ActionEvent e) {
+		int fila = tblProductos.getSelectedRow();
+		
+        if (fila == -1) {
+            mensaje("Seleccione una fila para modificar");
+            return;
+        }
+
+        try {
+            int codigo = leerCodigo();
+            Productos x = ap.buscarProductos(codigo);
+            if (x != null) {
+                String categoria = leerCategoria();
+                String producto = leerProducto();
+                try {
+                    double precio = leerPrecio();
+                    x.setCategoria(categoria);
+                    x.setProducto(producto);
+                    x.setPrecio(precio);
+                    ap.actualizarArchivo();
+                    listar();
+                    limpiar();
+                    mensaje("Producto modificado correctamente");
+                } catch (Exception ex) {
+                    mensaje("Ingrese un precio válido");
+                    txtPrecio.requestFocus();
+                }
+            } else {
+                mensaje("El código ingresado no existe");
+                txtCodigo.requestFocus();
+            }
+        } catch (Exception ex) {
+            mensaje("Código inválido");
+            txtCodigo.requestFocus();
+        }
 	}
 	protected void actionPerformedBtnEliminar(ActionEvent e) {
-		int fila=table.getSelectedRow();
+		int fila=tblProductos.getSelectedRow();
+		
 		if(fila==-1) {
 			mensaje("Seleccione fila a eliminar");
 			return;

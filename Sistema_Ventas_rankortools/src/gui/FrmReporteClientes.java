@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class DialogReporteClientes extends JFrame {
+public class FrmReporteClientes extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -18,7 +18,7 @@ public class DialogReporteClientes extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DialogReporteClientes frame = new DialogReporteClientes();
+					FrmReporteClientes frame = new FrmReporteClientes();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class DialogReporteClientes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DialogReporteClientes() {
+	public FrmReporteClientes() {
 		setTitle("Reporte de Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

@@ -4,9 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-public class DialogClientes extends JFrame {
+public class FrmIngresarSolicitud extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -18,7 +20,7 @@ public class DialogClientes extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DialogClientes frame = new DialogClientes();
+					FrmIngresarSolicitud frame = new FrmIngresarSolicitud();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,14 +32,11 @@ public class DialogClientes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DialogClientes() {
-		setTitle("Clientes");
+	public FrmIngresarSolicitud() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
 	}
 
 }

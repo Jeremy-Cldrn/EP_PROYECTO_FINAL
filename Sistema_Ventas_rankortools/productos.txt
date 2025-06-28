@@ -1,0 +1,15 @@
+1001;Herramientas Inalámbricas;Llaves;899.9
+1002;Herramientas Inalámbricas;Taladro atornillador;399.0
+1000;Herramientas Inalámbricas;Atornilladores;249.7
+2000;Accesorios;Brocas;15.0
+2001;Accesorios;Cinceles;25.0
+2003;Accesorios;Discos;10.0
+3001;Herramientas Electricas;Cortadoras;950.0
+3001;Herramientas Electricas;Esmeril;199.9
+3002;Herramientas Electricas;Hidrolavadoras;350.0
+3003;Herramientas Electricas;Martillos;1200.0
+3004;Herramientas Electricas;Pistolas de calor;120.0
+3005;Herramientas Electricas;Sierras;399.0
+3006;Herramientas Electricas;Sopladoras;150.0
+3007;Herramientas Electricas;Taladros;250.0
+3008;Herramientas Electricas;Tronzadoras;650.0

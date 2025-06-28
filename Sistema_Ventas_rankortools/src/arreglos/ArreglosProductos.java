@@ -51,14 +51,14 @@ public class ArreglosProductos {
 			int codigo;
 			double precio;
 			br = new BufferedReader(new FileReader("productos.txt"));
-			while((linea=br.readLine())!=null) {
-				s=linea.split(";");
-	            codigo = Integer.parseInt(s[0]);
-	            categoria = s[1];
-	            producto = s[2];
-	            precio = Double.parseDouble(s[3]);
-				listaProductos.add(new Productos(codigo, categoria, producto, precio));
-			}
+				while((linea=br.readLine())!=null) {
+					s=linea.split(";");
+		            codigo = Integer.parseInt(s[0]);
+		            categoria = s[1];
+		            producto = s[2];
+		            precio = Double.parseDouble(s[3]);
+					listaProductos.add(new Productos(codigo, categoria, producto, precio));
+				}
 			br.close();
 			
 		} catch (Exception e) {
