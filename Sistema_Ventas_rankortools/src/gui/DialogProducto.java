@@ -223,7 +223,7 @@ public class DialogProducto extends JDialog implements ActionListener {
 
         try {
             int codigo = leerCodigo();
-            Productos x = ap.buscarProdcuto(codigo);
+            Productos x = ap.buscarProductos(codigo);
             if (x != null) {
                 String categoria = leerCategoria();
                 String producto = leerProducto();

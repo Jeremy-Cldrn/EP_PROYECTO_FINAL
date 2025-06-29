@@ -201,9 +201,9 @@ public class Principal extends JFrame implements ActionListener {
 	}
 	
 	protected void actionPerformedMntmIngresarSolicitud(ActionEvent e) {
-		FrmIngresarSolicitud fISolicitud = new FrmIngresarSolicitud();
-		fISolicitud.setLocationRelativeTo(fISolicitud);
-		fISolicitud.setVisible(true);
+		DialogIngresarSolicitud dSolicitud = new DialogIngresarSolicitud();
+		dSolicitud.setLocationRelativeTo(dSolicitud);
+		dSolicitud.setVisible(true);
 	}
 	
 	protected void actionPerformedMntmTienda(ActionEvent e) {
@@ -224,28 +224,28 @@ public class Principal extends JFrame implements ActionListener {
 		dVentaDia.setVisible(true);
 	}
 	protected void doMntmProductosActionPerformed(ActionEvent e) {
-		FrmProductos frmProductos = new FrmProductos();
-		frmProductos.setLocationRelativeTo(frmProductos);
-		frmProductos.setVisible(true);
+		DialogProducto dProducto = new DialogProducto();
+		dProducto.setLocationRelativeTo(dProducto);
+		dProducto.setVisible(true);
 	}
 	protected void doMntmClientesActionPerformed(ActionEvent e) {
-		FrmClientes frmClientes = new FrmClientes();
-		frmClientes.setLocationRelativeTo(frmClientes);
-		frmClientes.setVisible(true);
+		DialogClientes dClientes = new DialogClientes();
+		dClientes.setLocationRelativeTo(dClientes);
+		dClientes.setVisible(true);
 	}
 	protected void doMntmHistorialVentasActionPerformed(ActionEvent e) {
-		FrmHistorialVentas	frmHistorialVentas = new FrmHistorialVentas();
-		frmHistorialVentas.setLocationRelativeTo(frmHistorialVentas);
-		frmHistorialVentas.setVisible(true);
+		DialogHistorialVentas	dHistorialVentas = new DialogHistorialVentas();
+		dHistorialVentas.setLocationRelativeTo(dHistorialVentas);
+		dHistorialVentas.setVisible(true);
 	}
 	protected void doMntmReporteStockActionPerformed(ActionEvent e) {
-		FrmReporteStock frmReporteStock = new FrmReporteStock();
-		frmReporteStock.setLocationRelativeTo(frmReporteStock);
-		frmReporteStock.setVisible(true);
+		DialogReporteStock dialogReporteStock = new DialogReporteStock();
+		dialogReporteStock.setLocationRelativeTo(dialogReporteStock);
+		dialogReporteStock.setVisible(true);
 	}
 	protected void doMntmReporteClientesActionPerformed(ActionEvent e) {
-		FrmReporteClientes frmReporteClientes = new FrmReporteClientes();
-		frmReporteClientes.setLocationRelativeTo(frmReporteClientes);
-		frmReporteClientes.setVisible(true);
+		DialogReporteClientes dReporteClientes = new DialogReporteClientes();
+		dReporteClientes.setLocationRelativeTo(dReporteClientes);
+		dReporteClientes.setVisible(true);
 	}
 }
