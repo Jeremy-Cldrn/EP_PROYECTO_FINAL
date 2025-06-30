@@ -4,3 +4,5 @@ Herramientas Inalámbricas;Atornilladores;249.7;2;499.4
 Herramientas Inalámbricas;Atornilladores;249.7;2;499.4
 Herramientas Inalámbricas;Atornilladores;249.7;2;499.4
 Herramientas Inalámbricas;Atornilladores;249.7;2;499.4
+
+Herramientas Inalámbricas;Llaves;899.8;23;20695.399999999998
