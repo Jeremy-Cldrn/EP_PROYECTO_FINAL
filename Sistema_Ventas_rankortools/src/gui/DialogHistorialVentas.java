@@ -24,9 +24,6 @@ public class DialogHistorialVentas extends JDialog implements ActionListener {
 	private JLabel lblVentaDeproductos;
 	private JScrollPane scr;
 	private JTextArea txtS;
-
-
-
 	/**
 	 * Launch the application.
 	 */
@@ -67,15 +64,11 @@ public class DialogHistorialVentas extends JDialog implements ActionListener {
 		txtS = new JTextArea();
 		scr.setViewportView(txtS);
 
-		// Llamada correcta al método
+
 		mostrarHistorial1();
+
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	}
-
-	// Método para leer y mostrar el historial
 	private void mostrarHistorial1() {
 		try (BufferedReader br = new BufferedReader(new FileReader("ventas.txt"))) {
 			StringBuilder contenido = new StringBuilder();
@@ -93,8 +86,15 @@ public class DialogHistorialVentas extends JDialog implements ActionListener {
 					contenido.append("----------------------------------------\n");
 				}
 			}
+			txtS.setText(contenido.toString()); // ✅ ESTA LÍNEA FALTABA
 		} catch (IOException e) {
 			txtS.setText("No se pudo leer el archivo de ventas.");
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
