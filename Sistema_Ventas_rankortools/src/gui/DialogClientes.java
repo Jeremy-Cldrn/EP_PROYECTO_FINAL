@@ -1,36 +1,56 @@
 package gui;
+	
+import java.awt.Color;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import arreglos.ArreglosClientes;
+import clases.Clientes;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DialogClientes extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-
 	private JPanel contentPane;
 	private JTextField txtDni, txtNombres, txtApellido, txtDireccion, txtTelefono;
 	private JLabel lblMantenimientoClientes, lblDni, lblNombres, lblApellidos, lblDireeccin, lblTelefono;
-	private JButton btnAdicionar, btnModificar, btnEliminar;
 	private JTable tblClientes;
 	private JScrollPane scrollPane;
 	private DefaultTableModel modeloClientes;
+	private JButton btnAdicionar;
+	private JButton btnModificar;
+	private JButton btnEliminar;
 
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> {
-			try {
-				DialogClientes dialog = new DialogClientes();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
-				dialog.setLocationRelativeTo(null);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
+		try {
+			DialogClientes dialog = new DialogClientes();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
+	/**
+	 * Create the dialog.
+	 */
 	public DialogClientes() {
 		setTitle("Clientes");
 		setBounds(100, 100, 637, 450);
@@ -96,24 +116,6 @@ public class DialogClientes extends JDialog implements ActionListener {
 		txtTelefono.setBounds(127, 183, 147, 19);
 		contentPane.add(txtTelefono);
 
-		btnAdicionar = new JButton("ADICIONAR");
-		btnAdicionar.addActionListener(this);
-		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnAdicionar.setBounds(470, 94, 111, 21);
-		contentPane.add(btnAdicionar);
-
-		btnModificar = new JButton("MODIFICAR");
-		btnModificar.addActionListener(this);
-		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnModificar.setBounds(470, 123, 111, 21);
-		contentPane.add(btnModificar);
-
-		btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.addActionListener(this);
-		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnEliminar.setBounds(470, 152, 111, 21);
-		contentPane.add(btnEliminar);
-
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(37, 222, 544, 164);
 		contentPane.add(scrollPane);
@@ -128,12 +130,145 @@ public class DialogClientes extends JDialog implements ActionListener {
 		tblClientes.setModel(modeloClientes);
 
 		scrollPane.setViewportView(tblClientes);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
+		btnAdicionar = new JButton("ADICIONAR");
+		btnAdicionar.addActionListener(this);
+		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnAdicionar.setBounds(463, 95, 118, 21);
+		contentPane.add(btnAdicionar);
+		
+		btnModificar = new JButton("MODIFICAR");
+		btnModificar.addActionListener(this);
+		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnModificar.setBounds(463, 124, 118, 21);
+		contentPane.add(btnModificar);
+		
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.addActionListener(this);
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnEliminar.setBounds(463, 152, 118, 21);
+		contentPane.add(btnEliminar);
 	}
-
+	
+	//Declaracion Global
+	ArreglosClientes ac = new ArreglosClientes();
+	
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnEliminar) {
+			actionPerformedBtnEliminar(e);
+		}
+		if (e.getSource() == btnModificar) {
+			actionPerformedBtnModificar(e);
+		}
+		if (e.getSource() == btnAdicionar) {
+			actionPerformedBtnAdicionar(e);
+		}
+	}
+	protected void actionPerformedBtnAdicionar(ActionEvent e) {
+		adicionarClientes();
+	}
+	protected void actionPerformedBtnModificar(ActionEvent e) {
+		modificarClientes();
+	}
+	protected void actionPerformedBtnEliminar(ActionEvent e) {
+		eliminarClientes();
+	}
+	
+	
+	void listar() {
+		modeloClientes.setRowCount(0);
+		for (int i = 0; i < ac.tamanio(); i++) {
+			Object [] fila = {
+					ac.obtener(i).getDni(),
+					ac.obtener(i).getNombres(),
+					ac.obtener(i).getApellidos(),
+					ac.obtener(i).getDireccion(),
+					ac.obtener(i).getTelefono()};
+			modeloClientes.addRow(fila);
+		}	
+	}
+	
+	void limpiar() {
+		txtDni.setText("");
+		txtNombres.setText("");
+		txtApellido.setText("");
+		txtDireccion.setText("");
+		txtTelefono.setText("");
+		txtDni.requestFocus();
+	}
+	
+	//Métodos tipo void (con parametros)
+	void mensaje(String s) {
+			JOptionPane.showMessageDialog(this, s);
+	}
+	
+	//Metodos que retornan valor (sin parametros)
+	int leerDni() {
+		return Integer.parseInt(txtDni.getText().trim());
+	}
+	
+	String leerNombres() {
+		return txtNombres.getText().toString();
+	}
+	
+	String leerApellidos() {
+		return txtApellido.getText().toString();
+	}
+	
+	String leerDireccion() {
+		return txtDireccion.getText().toString();
+	}
+	
+	int leerTelefono() {
+		return Integer.parseInt(txtTelefono.getText().trim());
+	}
+	
+	private void adicionarClientes() {
+		Clientes nuevo = new Clientes(leerDni(), leerNombres(), leerApellidos(), leerDireccion(), leerTelefono());
+		ac.adicionar(nuevo);
+		listar();
+		limpiar();
+	}
+	
+	private void modificarClientes() {
+		int fila = tblClientes.getSelectedRow();
+		if(fila == -1) {
+			mensaje("Seleccione una fila para modificar");
+			return;
+		}
+		try {	
+			int dni = leerDni();
+			Clientes x = ac.buscarClientes(dni);
+			if(x != null) {
+				x.setNombres(leerNombres());
+				x.setApellidos(leerApellidos());
+				x.setDireccion(leerDireccion());
+				x.setTelefono(leerTelefono());
+				ac.actualizarArchivo();
+				listar();
+				limpiar();
+				mensaje("Cliente Modificado correctamente");
+			}else {
+				mensaje("El DNI ingresado no existe");
+				txtDni.requestFocus();
+			}
+		} catch (Exception e) {
+			mensaje("Datos invalidos");
+		}
+	}
+	
+	private void eliminarClientes() {
+		int fila = tblClientes.getSelectedRow();
+		if(fila == -1)	{
+			mensaje("Seleccione fila a eliminar");
+			return;
+		}
+		int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+		if(respuesta==JOptionPane.YES_OPTION) {
+			ac.eliminar(ac.obtener(fila));
+			listar();
+			limpiar();
+		}
+	}
 }

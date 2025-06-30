@@ -87,5 +87,9 @@ public class ArreglosClientes {
 			// TODO: handle exception
 		}
 	}
+	
+	public void actualizarArchivo() {
+		grabarClientes();
+	}
 }
 
