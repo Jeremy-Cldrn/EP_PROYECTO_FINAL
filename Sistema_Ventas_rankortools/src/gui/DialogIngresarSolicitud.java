@@ -32,9 +32,9 @@ public class DialogIngresarSolicitud extends JDialog {
 	private JComboBox<String> cboCategoria;
 	private JComboBox<String> cboProductos;
 	private JLabel lblPrecio;
-	private JLabel lblNewLabel;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JLabel lblCantidad;
+	private JTextField txtPrecio;
+	private JTextField txtCantidad;
 	private JLabel lblS;
 	private JButton btnComprar;
 	private JScrollPane scr;
@@ -101,23 +101,23 @@ public class DialogIngresarSolicitud extends JDialog {
 		lblPrecio.setBounds(45, 138, 93, 17);
 		getContentPane().add(lblPrecio);
 		
-		lblNewLabel = new JLabel("Cantidad");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(45, 171, 72, 19);
-		getContentPane().add(lblNewLabel);
+		lblCantidad = new JLabel("Cantidad");
+		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCantidad.setBounds(45, 171, 72, 19);
+		getContentPane().add(lblCantidad);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setText((String) null);
-		textField.setColumns(10);
-		textField.setBounds(135, 137, 101, 19);
-		getContentPane().add(textField);
+		txtPrecio = new JTextField();
+		txtPrecio.setEditable(false);
+		txtPrecio.setText((String) null);
+		txtPrecio.setColumns(10);
+		txtPrecio.setBounds(135, 137, 101, 19);
+		getContentPane().add(txtPrecio);
 		
-		textField_1 = new JTextField();
-		textField_1.setText((String) null);
-		textField_1.setColumns(10);
-		textField_1.setBounds(135, 173, 101, 19);
-		getContentPane().add(textField_1);
+		txtCantidad = new JTextField();
+		txtCantidad.setText((String) null);
+		txtCantidad.setColumns(10);
+		txtCantidad.setBounds(135, 173, 101, 19);
+		getContentPane().add(txtCantidad);
 		
 		lblS = new JLabel("S/.");
 		lblS.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -178,12 +178,12 @@ public class DialogIngresarSolicitud extends JDialog {
 			for (int i = 0; i < ap.tamanio(); i++) {
 				Productos p = ap.obtener(i);
 				if (p.getCategoria().equals(categoria) && p.getProducto().equals(producto)) {
-					textField.setText(String.valueOf(p.getPrecio()));
+					txtPrecio.setText(String.valueOf(p.getPrecio()));
 					break;
 				}
 			}
 		} catch (Exception e) {
-			textField.setText("");
+			txtPrecio.setText("");
 		}
 	}
 
@@ -191,8 +191,8 @@ public class DialogIngresarSolicitud extends JDialog {
 	    try {
 	        String categoria = cboCategoria.getSelectedItem().toString();
 	        String producto = cboProductos.getSelectedItem().toString();
-	        int cantidad = Integer.parseInt(textField_1.getText());
-	        double precio = Double.parseDouble(textField.getText());
+	        int cantidad = Integer.parseInt(txtCantidad.getText());
+	        double precio = Double.parseDouble(txtPrecio.getText());
 
 	        Venta venta = new Venta(categoria, producto, precio, cantidad);
 	        txtS.setText(venta.formatoBoleta());

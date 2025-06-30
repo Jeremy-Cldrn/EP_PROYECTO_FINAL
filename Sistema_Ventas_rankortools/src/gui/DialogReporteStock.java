@@ -46,7 +46,7 @@ public class DialogReporteStock extends JDialog implements ActionListener {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblVentaDeproductos = new JLabel("HISTORIAL DE VENTAS");
+			JLabel lblVentaDeproductos = new JLabel("STOCK");
 			lblVentaDeproductos.setOpaque(true);
 			lblVentaDeproductos.setHorizontalAlignment(SwingConstants.CENTER);
 			lblVentaDeproductos.setForeground(Color.WHITE);

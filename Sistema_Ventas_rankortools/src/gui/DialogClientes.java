@@ -15,7 +15,7 @@ public class DialogClientes extends JDialog implements ActionListener {
 	private JLabel lblMantenimientoClientes, lblDni, lblNombres, lblApellidos, lblDireeccin, lblTelefono;
 	private JButton btnAdicionar, btnModificar, btnEliminar;
 	private JTable tblClientes;
-	private JScrollPane scrollPane;
+	private JScrollPane scr;
 	private DefaultTableModel modeloClientes;
 
 	public static void main(String[] args) {
@@ -33,7 +33,7 @@ public class DialogClientes extends JDialog implements ActionListener {
 
 	public DialogClientes() {
 		setTitle("Clientes");
-		setBounds(100, 100, 637, 450);
+		setBounds(100, 100, 637, 471);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		contentPane = new JPanel();
@@ -114,11 +114,12 @@ public class DialogClientes extends JDialog implements ActionListener {
 		btnEliminar.setBounds(470, 152, 111, 21);
 		contentPane.add(btnEliminar);
 
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(37, 222, 544, 164);
-		contentPane.add(scrollPane);
+		scr = new JScrollPane();
+		scr.setBounds(37, 222, 544, 199);
+		contentPane.add(scr);
 
 		tblClientes = new JTable();
+		tblClientes.setFillsViewportHeight(true);
 		modeloClientes = new DefaultTableModel();
 		modeloClientes.addColumn("DNI");
 		modeloClientes.addColumn("NOMBRES");
@@ -127,7 +128,7 @@ public class DialogClientes extends JDialog implements ActionListener {
 		modeloClientes.addColumn("TELÉFONO");
 		tblClientes.setModel(modeloClientes);
 
-		scrollPane.setViewportView(tblClientes);
+		scr.setViewportView(tblClientes);
 	}
 
 	@Override
