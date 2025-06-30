@@ -20,11 +20,11 @@ public class DialogProductos extends JDialog implements ActionListener {
 	private JPanel contentPane;
 	private JLabel lblMantenimientoProd, lblCategoria, lblProducto, lblCdigo, lblPrecio;
 	private JTextField txtCodigo, txtPrecio;
-	private JScrollPane scrollPane;
+	private JScrollPane scr;
 	private JTable tblProductos;
 	private JButton btnAdicionar, btnModificar, btnEliminar;
 	private DefaultTableModel modeloProducto;
-	private JComboBox<String> cmbCategoria, cmbProductos;
+	private JComboBox<String> cboCategoria, cboProductos;
 	private Map<String, String[]> productosPorCategoria;
 	private ArreglosProductos ap = new ArreglosProductos();
 	
@@ -41,7 +41,7 @@ public class DialogProductos extends JDialog implements ActionListener {
 
 	public DialogProductos() {
 		setTitle("Productos");
-		setBounds(100, 100, 637, 450);
+		setBounds(0, -28, 637, 557);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -49,26 +49,26 @@ public class DialogProductos extends JDialog implements ActionListener {
 		contentPane.setLayout(null);
 
 		lblMantenimientoProd = new JLabel("MANTENIMIENTO PRODUCTOS", SwingConstants.CENTER);
-		lblMantenimientoProd.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblMantenimientoProd.setBounds(0, 0, 623, 34);
+		lblMantenimientoProd.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblMantenimientoProd.setForeground(Color.WHITE);
 		lblMantenimientoProd.setBackground(Color.BLACK);
 		lblMantenimientoProd.setOpaque(true);
 		contentPane.add(lblMantenimientoProd);
 
 		lblCategoria = new JLabel("Categoria:");
-		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCategoria.setBounds(27, 61, 93, 17);
+		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblCategoria);
 
 		lblProducto = new JLabel("Producto:");
-		lblProducto.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblProducto.setBounds(27, 92, 93, 17);
+		lblProducto.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblProducto);
 
 		lblCdigo = new JLabel("Código:");
-		lblCdigo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCdigo.setBounds(351, 61, 93, 17);
+		lblCdigo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblCdigo);
 
 		txtCodigo = new JTextField();
@@ -76,20 +76,21 @@ public class DialogProductos extends JDialog implements ActionListener {
 		contentPane.add(txtCodigo);
 
 		lblPrecio = new JLabel("Precio:");
-		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPrecio.setBounds(351, 95, 93, 17);
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblPrecio);
 
 		txtPrecio = new JTextField();
 		txtPrecio.setBounds(425, 93, 176, 19);
 		contentPane.add(txtPrecio);
 
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(27, 145, 574, 208);
-		contentPane.add(scrollPane);
+		scr = new JScrollPane();
+		scr.setBounds(27, 145, 574, 289);
+		contentPane.add(scr);
 
 		tblProductos = new JTable();
-		scrollPane.setViewportView(tblProductos);
+		tblProductos.setFillsViewportHeight(true);
+		scr.setViewportView(tblProductos);
 
 		modeloProducto = new DefaultTableModel(new Object[]{"Código", "Categoria", "Producto", "Precio"}, 0);
 		tblProductos.setModel(modeloProducto);
@@ -98,38 +99,38 @@ public class DialogProductos extends JDialog implements ActionListener {
 			if (!e.getValueIsAdjusting() && tblProductos.getSelectedRow() != -1) {
 				int fila = tblProductos.getSelectedRow();
 				txtCodigo.setText(tblProductos.getValueAt(fila, 0).toString());
-				cmbCategoria.setSelectedItem(tblProductos.getValueAt(fila, 1).toString());
-				cmbProductos.setSelectedItem(tblProductos.getValueAt(fila, 2).toString());
+				cboCategoria.setSelectedItem(tblProductos.getValueAt(fila, 1).toString());
+				cboProductos.setSelectedItem(tblProductos.getValueAt(fila, 2).toString());
 				txtPrecio.setText(tblProductos.getValueAt(fila, 3).toString());
 			}
 		});
 
 		btnAdicionar = new JButton("ADICIONAR");
+		btnAdicionar.setBounds(70, 465, 114, 21);
 		btnAdicionar.addActionListener(this);
 		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAdicionar.setBounds(70, 376, 114, 21);
 		contentPane.add(btnAdicionar);
 
 		btnModificar = new JButton("MODIFICAR");
+		btnModificar.setBounds(254, 465, 114, 21);
 		btnModificar.addActionListener(this);
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnModificar.setBounds(254, 376, 114, 21);
 		contentPane.add(btnModificar);
 
 		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setBounds(438, 465, 114, 21);
 		btnEliminar.addActionListener(this);
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnEliminar.setBounds(438, 376, 114, 21);
 		contentPane.add(btnEliminar);
 
-		cmbCategoria = new JComboBox<>();
-		cmbCategoria.setBounds(141, 61, 176, 21);
-		cmbCategoria.addActionListener(this);
-		contentPane.add(cmbCategoria);
+		cboCategoria = new JComboBox<>();
+		cboCategoria.setBounds(141, 61, 176, 21);
+		cboCategoria.addActionListener(this);
+		contentPane.add(cboCategoria);
 
-		cmbProductos = new JComboBox<>();
-		cmbProductos.setBounds(141, 92, 176, 21);
-		contentPane.add(cmbProductos);
+		cboProductos = new JComboBox<>();
+		cboProductos.setBounds(141, 92, 176, 21);
+		contentPane.add(cboProductos);
 
 		inicializarDatos();
 		listar();
@@ -142,17 +143,17 @@ public class DialogProductos extends JDialog implements ActionListener {
 		productosPorCategoria.put("Accesorios", new String[]{"Brocas", "Cinceles", "Discos"});
 
 		for (String categoria : productosPorCategoria.keySet()) {
-			cmbCategoria.addItem(categoria);
+			cboCategoria.addItem(categoria);
 		}
 		actualizarProductos("Herramientas Inalámbricas");
 	}
 
 	private void actualizarProductos(String categoria) {
-		cmbProductos.removeAllItems();
+		cboProductos.removeAllItems();
 		String[] productos = productosPorCategoria.get(categoria);
 		if (productos != null) {
 			for (String producto : productos) {
-				cmbProductos.addItem(producto);
+				cboProductos.addItem(producto);
 			}
 		}
 	}
@@ -167,13 +168,13 @@ public class DialogProductos extends JDialog implements ActionListener {
 		if (e.getSource() == btnAdicionar) {
 			actionPerformedBtnAdicionar(e);
 		}
-		if (e.getSource() == cmbCategoria) {
+		if (e.getSource() == cboCategoria) {
 			actionPerformedCmbCategoria(e);
 		}
 	}
 
 	protected void actionPerformedCmbCategoria(ActionEvent e) {
-		String categoriaSeleccionada = (String) cmbCategoria.getSelectedItem();
+		String categoriaSeleccionada = (String) cboCategoria.getSelectedItem();
 		actualizarProductos(categoriaSeleccionada);
 	}
 
@@ -198,8 +199,8 @@ public class DialogProductos extends JDialog implements ActionListener {
 	}
 
 	void limpiar() {
-		cmbCategoria.setSelectedIndex(0);
-		cmbProductos.setSelectedIndex(0);
+		cboCategoria.setSelectedIndex(0);
+		cboProductos.setSelectedIndex(0);
 		txtCodigo.setText("");
 		txtPrecio.setText("");
 		txtCodigo.requestFocus();
@@ -214,11 +215,11 @@ public class DialogProductos extends JDialog implements ActionListener {
 	}
 
 	String leerCategoria() {
-		return cmbCategoria.getSelectedItem().toString();
+		return cboCategoria.getSelectedItem().toString();
 	}
 
 	String leerProducto() {
-		return cmbProductos.getSelectedItem().toString();
+		return cboProductos.getSelectedItem().toString();
 	}
 
 	double leerPrecio() {

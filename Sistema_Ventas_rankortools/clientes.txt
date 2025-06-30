@@ -8,4 +8,4 @@
 71938465;Valeria;Cáceres Chacón;Av. El Sol 800;918273645
 73481596;Miguel;Sánchez Núñez;Jr. Huancayo 101;975318264
 76849213;Diana;Vargas León;Av. Grau 555;964512387
-70404362;Julio;Soto Corzo;Av. 26 de noviembre 330;998794213
+70404362;Julio;Soto Corzo;Av. 26 de noviembre 330;998794214

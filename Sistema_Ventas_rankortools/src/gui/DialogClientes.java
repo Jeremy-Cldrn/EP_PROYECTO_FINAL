@@ -290,4 +290,12 @@ public class DialogClientes extends JDialog implements ActionListener {
 			limpiar();
 		}
 	}
+
+	public void cargarClienteDesdeBusqueda(Clientes c) {
+		txtDni.setText(String.valueOf(c.getDni()));
+		txtNombres.setText(String.valueOf(c.getNombres()));
+		txtApellido.setText(String.valueOf(c.getApellidos()));
+		txtDireccion.setText(String.valueOf(c.getDireccion()));
+		txtTelefono.setText(String.valueOf(c.getTelefono()));
+	}
 }

@@ -21,7 +21,7 @@ public class DialogTienda extends JDialog {
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 	private JLabel lblMapa;
-	private JLabel lblDatosContacto_1;
+	private JLabel lblUbicacion;
 	
 	
 	
@@ -106,6 +106,11 @@ public class DialogTienda extends JDialog {
 		lblMapa.setBounds(0, 404, 508, 345);
 		getContentPane().add(lblMapa);
 		
+		lblUbicacion = new JLabel("Ubicación");
+		lblUbicacion.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblUbicacion.setBounds(193, 356, 122, 24);
+		getContentPane().add(lblUbicacion);
+		
 		// Cargar imagen para lblMapa
 		ImageIcon iconMapa = new ImageIcon("imagenes/ubicacion.png");
 		// Escalar imagen al tamaño del JLabel lblMapa
@@ -113,10 +118,7 @@ public class DialogTienda extends JDialog {
 		// Asignar imagen al JLabel lblMapa
 		lblMapa.setIcon(new ImageIcon(imgMapa));
 		
-		lblDatosContacto_1 = new JLabel("Ubicación");
-		lblDatosContacto_1.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblDatosContacto_1.setBounds(193, 356, 122, 24);
-		getContentPane().add(lblDatosContacto_1);
+		
 		
 	}
 }

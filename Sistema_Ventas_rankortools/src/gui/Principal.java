@@ -24,7 +24,6 @@ public class Principal extends JFrame implements ActionListener {
 	private JMenuBar menuBar;
 	private JMenu mnMantenimiento;
 	private JMenu mnVentas;
-	private JMenu mnReportes;
 	private JMenu mnAcercaDe;
 	private JMenu mnArchivo;
 	private JMenuItem mntmTienda;
@@ -35,7 +34,6 @@ public class Principal extends JFrame implements ActionListener {
 	private JLabel lblFondo;
 	private JMenuItem mntmProductos;
 	private JMenuItem mntmClientes;
-	private JMenuItem mntmReporteStock;
 	private JMenuItem mntmHistorialVentas;
 	
 	/**
@@ -83,15 +81,6 @@ public class Principal extends JFrame implements ActionListener {
 		mnVentas = new JMenu("Ventas");
 		mnVentas.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		menuBar.add(mnVentas);
-		
-		mnReportes = new JMenu("Reportes");
-		mnReportes.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		menuBar.add(mnReportes);
-		
-		mntmReporteStock = new JMenuItem("Reporte Stock");
-		mntmReporteStock.addActionListener(this);
-		mntmReporteStock.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		mnReportes.add(mntmReporteStock);
 		
 		mnAcercaDe = new JMenu("Acerca de");
 		mnAcercaDe.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -155,9 +144,6 @@ public class Principal extends JFrame implements ActionListener {
 		
 	}
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == mntmReporteStock) {
-			doMntmReporteStockActionPerformed(e);
-		}
 		if (e.getSource() == mntmHistorialVentas) {
 			doMntmHistorialVentasActionPerformed(e);
 		}
@@ -229,10 +215,5 @@ public class Principal extends JFrame implements ActionListener {
 		DialogHistorialVentas dHistorialVentas = new DialogHistorialVentas();
 		dHistorialVentas.setLocationRelativeTo(dHistorialVentas);
 		dHistorialVentas.setVisible(true);
-	}
-	protected void doMntmReporteStockActionPerformed(ActionEvent e) {
-		DialogReporteStock dialogReporteStock = new DialogReporteStock();
-		dialogReporteStock.setLocationRelativeTo(dialogReporteStock);
-		dialogReporteStock.setVisible(true);
 	}
 }
