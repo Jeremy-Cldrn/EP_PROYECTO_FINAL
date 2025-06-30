@@ -6,7 +6,17 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.SwingConstants;
+
+import arreglos.ArreglosProductos;
+import clases.Productos;
+import clases.Venta;
+import arreglos.ArregloVentas;
+
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -28,7 +38,11 @@ public class DialogIngresarSolicitud extends JDialog {
 	private JLabel lblS;
 	private JButton btnComprar;
 	private JScrollPane scr;
-	private JTextArea txtS;
+	
+	private JTextArea txtS;private ArreglosProductos ap = new ArreglosProductos();
+	private Map<String, String[]> productosPorCategoria;
+	private ArregloVentas ventas = new ArregloVentas();
+
 
 	/**
 	 * Launch the application.
@@ -123,5 +137,71 @@ public class DialogIngresarSolicitud extends JDialog {
 		txtS.setEditable(false);
 		scr.setViewportView(txtS);
 
+		cboCategoria.addActionListener(e -> actualizarProductos());
+		btnComprar.addActionListener(e -> procesarCompra());
+		cboProductos.addActionListener(e -> actualizarPrecio());
+
+		inicializarDatos();
+		
+
 	}
+
+	private void inicializarDatos() {
+		productosPorCategoria = new HashMap<>();
+		productosPorCategoria.put("Herramientas Electricas", new String[]{"Cortadoras", "Esmeril", "Hidrolavadoras", "Martillos", "Pistolas de calor", "Sierras", "Sopladoras", "Taladros", "Tronzadoras"});
+		productosPorCategoria.put("Herramientas Inalámbricas", new String[]{"Atornilladores", "Llaves", "Taladro atornillador"});
+		productosPorCategoria.put("Accesorios", new String[]{"Brocas", "Cinceles", "Discos"});
+
+		for (String categoria : productosPorCategoria.keySet()) {
+			cboCategoria.addItem(categoria);
+		}
+		cboCategoria.setSelectedIndex(0); // para disparar el primer update
+	}
+
+
+	private void actualizarProductos() {
+		String categoria = cboCategoria.getSelectedItem().toString();
+		cboProductos.removeAllItems();
+		String[] productos = productosPorCategoria.get(categoria);
+		if (productos != null) {
+			for (String producto : productos) {
+				cboProductos.addItem(producto);
+			}
+		}
+		actualizarPrecio();
+	}
+
+	private void actualizarPrecio() {
+		try {
+			String categoria = cboCategoria.getSelectedItem().toString();
+			String producto = cboProductos.getSelectedItem().toString();
+			for (int i = 0; i < ap.tamanio(); i++) {
+				Productos p = ap.obtener(i);
+				if (p.getCategoria().equals(categoria) && p.getProducto().equals(producto)) {
+					textField.setText(String.valueOf(p.getPrecio()));
+					break;
+				}
+			}
+		} catch (Exception e) {
+			textField.setText("");
+		}
+	}
+
+	private void procesarCompra() {
+	    try {
+	        String categoria = cboCategoria.getSelectedItem().toString();
+	        String producto = cboProductos.getSelectedItem().toString();
+	        int cantidad = Integer.parseInt(textField_1.getText());
+	        double precio = Double.parseDouble(textField.getText());
+
+	        Venta venta = new Venta(categoria, producto, precio, cantidad);
+	        txtS.setText(venta.formatoBoleta());
+	        ventas.registrarVenta(venta);
+
+	    } catch (Exception e) {
+	        txtS.setText("Error al procesar la compra. Verifique los datos.");
+	    }
+	}
+
+
 }
