@@ -36,7 +36,6 @@ public class Principal extends JFrame implements ActionListener {
 	private JMenuItem mntmProductos;
 	private JMenuItem mntmClientes;
 	private JMenuItem mntmReporteStock;
-	private JMenuItem mntmReporteClientes;
 	private JMenuItem mntmHistorialVentas;
 	
 	/**
@@ -93,11 +92,6 @@ public class Principal extends JFrame implements ActionListener {
 		mntmReporteStock.addActionListener(this);
 		mntmReporteStock.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		mnReportes.add(mntmReporteStock);
-		
-		mntmReporteClientes = new JMenuItem("Reporte Clientes");
-		mntmReporteClientes.addActionListener(this);
-		mntmReporteClientes.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		mnReportes.add(mntmReporteClientes);
 		
 		mnAcercaDe = new JMenu("Acerca de");
 		mnAcercaDe.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -161,9 +155,6 @@ public class Principal extends JFrame implements ActionListener {
 		
 	}
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == mntmReporteClientes) {
-			doMntmReporteClientesActionPerformed(e);
-		}
 		if (e.getSource() == mntmReporteStock) {
 			doMntmReporteStockActionPerformed(e);
 		}
@@ -234,7 +225,7 @@ public class Principal extends JFrame implements ActionListener {
 		dClientes.setVisible(true);
 	}
 	protected void doMntmHistorialVentasActionPerformed(ActionEvent e) {
-		DialogHistorialVentas	dHistorialVentas = new DialogHistorialVentas();
+		DialogHistorialVentas dHistorialVentas = new DialogHistorialVentas();
 		dHistorialVentas.setLocationRelativeTo(dHistorialVentas);
 		dHistorialVentas.setVisible(true);
 	}
@@ -242,10 +233,5 @@ public class Principal extends JFrame implements ActionListener {
 		DialogReporteStock dialogReporteStock = new DialogReporteStock();
 		dialogReporteStock.setLocationRelativeTo(dialogReporteStock);
 		dialogReporteStock.setVisible(true);
-	}
-	protected void doMntmReporteClientesActionPerformed(ActionEvent e) {
-		DialogReporteClientes dReporteClientes = new DialogReporteClientes();
-		dReporteClientes.setLocationRelativeTo(dReporteClientes);
-		dReporteClientes.setVisible(true);
 	}
 }

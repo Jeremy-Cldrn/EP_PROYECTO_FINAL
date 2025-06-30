@@ -1,19 +1,12 @@
 package gui;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
+public class DialogClientes extends JDialog {
 
-	public class DialogClientes extends JDialog implements ActionListener {
-		
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -33,22 +26,11 @@ import javax.swing.border.EmptyBorder;
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
 	public DialogClientes() {
-		setTitle("Clientes");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
