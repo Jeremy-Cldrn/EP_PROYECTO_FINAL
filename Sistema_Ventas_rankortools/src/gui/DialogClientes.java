@@ -43,6 +43,7 @@ public class DialogClientes extends JDialog implements ActionListener {
 			DialogClientes dialog = new DialogClientes();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
+			dialog.setLocationRelativeTo(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -121,6 +122,8 @@ public class DialogClientes extends JDialog implements ActionListener {
 		contentPane.add(scrollPane);
 
 		tblClientes = new JTable();
+		scrollPane.setViewportView(tblClientes);
+		
 		modeloClientes = new DefaultTableModel();
 		modeloClientes.addColumn("DNI");
 		modeloClientes.addColumn("NOMBRES");
@@ -128,8 +131,21 @@ public class DialogClientes extends JDialog implements ActionListener {
 		modeloClientes.addColumn("DIRECCIÓN");
 		modeloClientes.addColumn("TELÉFONO");
 		tblClientes.setModel(modeloClientes);
-
-		scrollPane.setViewportView(tblClientes);
+		
+		tblClientes.getSelectionModel().addListSelectionListener(e -> {
+			if(!e.getValueIsAdjusting() && tblClientes.getSelectedRow() != -1) {
+				int fila = tblClientes.getSelectedRow();
+				if (fila == -1) {
+					mensaje("Seleccione una fila para editar.");
+					return;
+				}
+				txtDni.setText(tblClientes.getValueAt(fila, 0).toString());
+				txtNombres.setText(tblClientes.getValueAt(fila, 1).toString());
+				txtApellido.setText(tblClientes.getValueAt(fila, 2).toString());
+				txtDireccion.setText(tblClientes.getValueAt(fila, 3).toString());
+				txtTelefono.setText(tblClientes.getValueAt(fila, 4).toString());
+			}
+		});
 		
 		btnAdicionar = new JButton("ADICIONAR");
 		btnAdicionar.addActionListener(this);
@@ -148,11 +164,12 @@ public class DialogClientes extends JDialog implements ActionListener {
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnEliminar.setBounds(463, 152, 118, 21);
 		contentPane.add(btnEliminar);
+		
+		listar();
 	}
 	
 	//Declaracion Global
 	ArreglosClientes ac = new ArreglosClientes();
-	
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnEliminar) {
@@ -175,7 +192,7 @@ public class DialogClientes extends JDialog implements ActionListener {
 		eliminarClientes();
 	}
 	
-	
+	//Metodos tipo void (sin parametros)
 	void listar() {
 		modeloClientes.setRowCount(0);
 		for (int i = 0; i < ac.tamanio(); i++) {
@@ -224,49 +241,51 @@ public class DialogClientes extends JDialog implements ActionListener {
 		return Integer.parseInt(txtTelefono.getText().trim());
 	}
 	
+	//FUNCIONES CRUD
 	private void adicionarClientes() {
-		Clientes nuevo = new Clientes(leerDni(), leerNombres(), leerApellidos(), leerDireccion(), leerTelefono());
-		ac.adicionar(nuevo);
-		listar();
-		limpiar();
-	}
-	
-	private void modificarClientes() {
-		int fila = tblClientes.getSelectedRow();
-		if(fila == -1) {
-			mensaje("Seleccione una fila para modificar");
-			return;
-		}
-		try {	
-			int dni = leerDni();
-			Clientes x = ac.buscarClientes(dni);
-			if(x != null) {
-				x.setNombres(leerNombres());
-				x.setApellidos(leerApellidos());
-				x.setDireccion(leerDireccion());
-				x.setTelefono(leerTelefono());
-				ac.actualizarArchivo();
-				listar();
-				limpiar();
-				mensaje("Cliente Modificado correctamente");
-			}else {
-				mensaje("El DNI ingresado no existe");
-				txtDni.requestFocus();
-			}
+		try {
+			Clientes nuevo = new Clientes(leerDni(), leerNombres(), leerApellidos(), leerDireccion(), leerTelefono());
+			ac.adicionar(nuevo);
+			ac.actualizarArchivo();
+			listar();
+			limpiar();
+			mensaje("Cliente registrado.");
 		} catch (Exception e) {
-			mensaje("Datos invalidos");
+			mensaje("Error al registrar cliente. Verifique los datos.");
 		}
 	}
-	
+
+	private void modificarClientes() {
+		try {
+			int dni = leerDni();
+			Clientes c = ac.buscarClientes(dni);
+			if (c == null) {
+				mensaje("El DNI ingresado no existe.");
+				return;
+			}
+			c.setNombres(leerNombres());
+			c.setApellidos(leerApellidos());
+			c.setDireccion(leerDireccion());
+			c.setTelefono(leerTelefono());
+			ac.actualizarArchivo();
+			listar();
+			limpiar();
+			mensaje("Cliente modificado correctamente.");
+		} catch (Exception e) {
+			mensaje("Error al modificar cliente. Verifique los datos.");
+		}
+	}
+
 	private void eliminarClientes() {
 		int fila = tblClientes.getSelectedRow();
-		if(fila == -1)	{
-			mensaje("Seleccione fila a eliminar");
+		if (fila == -1) {
+			mensaje("Seleccione una fila a eliminar.");
 			return;
 		}
 		int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
-		if(respuesta==JOptionPane.YES_OPTION) {
+		if (respuesta == JOptionPane.YES_OPTION) {
 			ac.eliminar(ac.obtener(fila));
+			ac.actualizarArchivo();
 			listar();
 			limpiar();
 		}

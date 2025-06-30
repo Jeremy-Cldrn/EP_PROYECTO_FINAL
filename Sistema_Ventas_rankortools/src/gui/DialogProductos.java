@@ -33,6 +33,7 @@ public class DialogProductos extends JDialog implements ActionListener {
             DialogProductos dialog = new DialogProductos();
             dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             dialog.setVisible(true);
+            dialog.setLocationRelativeTo(null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -177,50 +178,15 @@ public class DialogProductos extends JDialog implements ActionListener {
 	}
 
 	protected void actionPerformedBtnAdicionar(ActionEvent e) {
-		Productos nuevo = new Productos(leerCodigo(), leerCategoria(), leerProducto(), leerPrecio());
-		ap.adicionar(nuevo);
-		listar();
-		limpiar();
+		adicionarProductos();
 	}
 
 	protected void actionPerformedBtnModificar(ActionEvent e) {
-		int fila = tblProductos.getSelectedRow();
-		if (fila == -1) {
-			mensaje("Seleccione una fila para modificar");
-			return;
-		}
-		try {
-			int codigo = leerCodigo();
-			Productos x = ap.buscarProductos(codigo);
-			if (x != null) {
-				x.setCategoria(leerCategoria());
-				x.setProducto(leerProducto());
-				x.setPrecio(leerPrecio());
-				ap.actualizarArchivo();
-				listar();
-				limpiar();
-				mensaje("Producto modificado correctamente");
-			} else {
-				mensaje("El código ingresado no existe");
-				txtCodigo.requestFocus();
-			}
-		} catch (Exception ex) {
-			mensaje("Datos inválidos");
-		}
+		modificarProductos();
 	}
 
 	protected void actionPerformedBtnEliminar(ActionEvent e) {
-		int fila = tblProductos.getSelectedRow();
-		if (fila == -1) {
-			mensaje("Seleccione fila a eliminar");
-			return;
-		}
-		int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
-		if (respuesta == JOptionPane.YES_OPTION) {
-			ap.eliminar(ap.obtener(fila));
-			listar();
-			limpiar();
-		}
+		eliminarProductos();
 	}
 
 	void listar() {
@@ -257,5 +223,53 @@ public class DialogProductos extends JDialog implements ActionListener {
 
 	double leerPrecio() {
 		return Double.parseDouble(txtPrecio.getText());
+	}
+	
+	//FUNCIONES CRUD
+	private void adicionarProductos() {
+		Productos nuevo = new Productos(leerCodigo(), leerCategoria(), leerProducto(), leerPrecio());
+		ap.adicionar(nuevo);
+		listar();
+		limpiar();
+	}
+	
+	private void modificarProductos() {
+		int fila = tblProductos.getSelectedRow();
+		if (fila == -1) {
+			mensaje("Seleccione una fila para modificar");
+			return;
+		}
+		try {
+			int codigo = leerCodigo();
+			Productos x = ap.buscarProductos(codigo);
+			if (x != null) {
+				x.setCategoria(leerCategoria());
+				x.setProducto(leerProducto());
+				x.setPrecio(leerPrecio());
+				ap.actualizarArchivo();
+				listar();
+				limpiar();
+				mensaje("Producto modificado correctamente");
+			} else {
+				mensaje("El código ingresado no existe");
+				txtCodigo.requestFocus();
+			}
+		} catch (Exception ex) {
+			mensaje("Datos inválidos");
+		}
+	}
+	
+	private void eliminarProductos() {
+		int fila = tblProductos.getSelectedRow();
+		if (fila == -1) {
+			mensaje("Seleccione fila a eliminar");
+			return;
+		}
+		int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+		if (respuesta == JOptionPane.YES_OPTION) {
+			ap.eliminar(ap.obtener(fila));
+			listar();
+			limpiar();
+		}
 	}
 }
