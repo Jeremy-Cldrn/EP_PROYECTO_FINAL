@@ -215,10 +215,11 @@ public class Principal extends JFrame implements ActionListener {
 		dVentaDia.setVisible(true);
 	}
 	protected void doMntmProductosActionPerformed(ActionEvent e) {
-		DialogProducto dProducto = new DialogProducto();
-		dProducto.setLocationRelativeTo(dProducto);
-		dProducto.setVisible(true);
+		DialogProductos dProductos =new DialogProductos();
+		dProductos.setLocationRelativeTo(dProductos);
+		dProductos.setVisible(true);
 	}
+		
 	protected void doMntmClientesActionPerformed(ActionEvent e) {
 		DialogClientes dClientes = new DialogClientes();
 		dClientes.setLocationRelativeTo(dClientes);
