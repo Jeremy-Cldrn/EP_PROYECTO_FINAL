@@ -30,7 +30,6 @@ import java.awt.event.ActionEvent;
 public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	private static final DialogBuscarClientes DialogBuscarClientes = null;
 	private JLabel lblVentaDeproductos;
 	private JLabel lblCategoria;
 	private JLabel lblProducto;
