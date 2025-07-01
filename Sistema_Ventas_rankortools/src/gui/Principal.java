@@ -24,11 +24,10 @@ public class Principal extends JFrame implements ActionListener {
 	private JMenuBar menuBar;
 	private JMenu mnMantenimiento;
 	private JMenu mnVentas;
-	private JMenu mnAcercaDe;
+	private JMenu mnAcerca;
 	private JMenu mnArchivo;
 	private JMenuItem mntmTienda;
 	private JMenuItem mntmIntegrantes;
-	private JMenuItem mntmVentasDia;
 	private JMenuItem mntmSalir;
 	private JMenuItem mntmIngresarSolicitud;
 	private JLabel lblFondo;
@@ -64,6 +63,15 @@ public class Principal extends JFrame implements ActionListener {
 		menuBar.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		setJMenuBar(menuBar);
 		
+		mnArchivo = new JMenu("Archivo");
+		mnArchivo.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		menuBar.add(mnArchivo);
+		
+		mntmSalir = new JMenuItem("Salir");
+		mntmSalir.addActionListener(this);
+		mntmSalir.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+		mnArchivo.add(mntmSalir);
+		
 		mnMantenimiento = new JMenu("Mantenimientos");
 		mnMantenimiento.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		menuBar.add(mnMantenimiento);
@@ -82,13 +90,9 @@ public class Principal extends JFrame implements ActionListener {
 		mnVentas.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		menuBar.add(mnVentas);
 		
-		mnAcercaDe = new JMenu("Acerca de");
-		mnAcercaDe.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		menuBar.add(mnAcercaDe);
-		
-		mnArchivo = new JMenu("Archivo");
-		mnArchivo.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		menuBar.add(mnArchivo);
+		mnAcerca = new JMenu("Acerca");
+		mnAcerca.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		menuBar.add(mnAcerca);
 		
 		mntmIngresarSolicitud = new JMenuItem("Ingresar solicitud");
 		mntmIngresarSolicitud.addActionListener(this);
@@ -104,22 +108,12 @@ public class Principal extends JFrame implements ActionListener {
 		mntmTienda = new JMenuItem("Tienda");
 		mntmTienda.addActionListener(this);
 		mntmTienda.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		mnAcercaDe.add(mntmTienda);
+		mnAcerca.add(mntmTienda);
 		
 		mntmIntegrantes = new JMenuItem("Integrantes");
 		mntmIntegrantes.addActionListener(this);
 		mntmIntegrantes.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		mnAcercaDe.add(mntmIntegrantes);
-		
-		mntmVentasDia = new JMenuItem("Ventas del dia");
-		mntmVentasDia.addActionListener(this);
-		mntmVentasDia.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		mnAcercaDe.add(mntmVentasDia);
-		
-		mntmSalir = new JMenuItem("Salir");
-		mntmSalir.addActionListener(this);
-		mntmSalir.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		mnArchivo.add(mntmSalir);
+		mnAcerca.add(mntmIntegrantes);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -165,9 +159,6 @@ public class Principal extends JFrame implements ActionListener {
 		if (e.getSource() == mntmIntegrantes) {
 			actionPerformedMntmIntegrantes(e);
 		}
-		if (e.getSource() == mntmVentasDia) {
-			actionPerformedMntmVentasDia(e);
-		}
 	}
 	protected void actionPerformedMntmSalir(ActionEvent e) {
 		int respuesta;		
@@ -193,12 +184,6 @@ public class Principal extends JFrame implements ActionListener {
 		DialogIntegrantes dIntegrantes = new DialogIntegrantes();
 		dIntegrantes.setLocationRelativeTo(dIntegrantes);
 		dIntegrantes.setVisible(true);
-	}
-	
-	protected void actionPerformedMntmVentasDia(ActionEvent e) {
-		DialogVentasDia dVentaDia = new DialogVentasDia();
-		dVentaDia.setLocationRelativeTo(dVentaDia);
-		dVentaDia.setVisible(true);
 	}
 	protected void doMntmProductosActionPerformed(ActionEvent e) {
 		DialogProductos dProductos =new DialogProductos();
