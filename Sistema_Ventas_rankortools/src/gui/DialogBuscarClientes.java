@@ -19,15 +19,11 @@ public class DialogBuscarClientes extends JDialog implements ActionListener {
 	private JScrollPane scrollPane;
 	private JTable tblBuscarClts;
 	private DefaultTableModel modeloBuscarCliente;
-	private DialogClientes dlgClientes;
 	private JButton btnEnviar;
-	private JRadioButton rdbDni, rdbApellido;
-	private ButtonGroup grupoBusqueda;
+	private DialogIngresarSolicitud dlgIngresarSolicitud;
 
-	private ArreglosClientes ac = new ArreglosClientes();
-
-	public DialogBuscarClientes(DialogClientes dlg) {
-		this.dlgClientes = dlg;
+	public DialogBuscarClientes(DialogIngresarSolicitud dialogIngresarSolicitud) {
+		this.dlgIngresarSolicitud = dialogIngresarSolicitud;
 		initComponents();
 	}
 
@@ -36,13 +32,13 @@ public class DialogBuscarClientes extends JDialog implements ActionListener {
 		setBounds(100, 100, 610, 380);
 		getContentPane().setLayout(null);
 
-		JLabel lblBuscar = new JLabel("Buscar:");
+		JLabel lblBuscar = new JLabel("Buscar por Apellidos:");
 		lblBuscar.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblBuscar.setBounds(29, 31, 77, 19);
+		lblBuscar.setBounds(29, 31, 162, 19);
 		getContentPane().add(lblBuscar);
 
 		txtBusqueda = new JTextField();
-		txtBusqueda.setBounds(100, 32, 245, 19);
+		txtBusqueda.setBounds(201, 33, 259, 19);
 		getContentPane().add(txtBusqueda);
 		txtBusqueda.setColumns(10);
 
@@ -52,20 +48,6 @@ public class DialogBuscarClientes extends JDialog implements ActionListener {
 		btnEnviar.setBounds(470, 30, 100, 21);
 		getContentPane().add(btnEnviar);
 
-		rdbDni = new JRadioButton("DNI");
-		rdbDni.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbDni.setBounds(100, 60, 60, 21);
-		getContentPane().add(rdbDni);
-
-		rdbApellido = new JRadioButton("Apellido");
-		rdbApellido.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbApellido.setBounds(160, 60, 100, 21);
-		getContentPane().add(rdbApellido);
-
-		grupoBusqueda = new ButtonGroup();
-		grupoBusqueda.add(rdbDni);
-		grupoBusqueda.add(rdbApellido);
-		rdbApellido.setSelected(true); // por defecto
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(29, 95, 540, 220);
@@ -97,29 +79,20 @@ public class DialogBuscarClientes extends JDialog implements ActionListener {
 			}
 		});
 	}
-
+	
+	ArreglosClientes ac = new ArreglosClientes();
+	
 	private void listarClientes(String filtro) {
-		modeloBuscarCliente.setRowCount(0); // Limpiar tabla
-
+		modeloBuscarCliente.setRowCount(0);
 		for (int i = 0; i < ac.tamanio(); i++) {
 			Clientes c = ac.obtener(i);
-			boolean coincide = false;
-
-			if (filtro.isEmpty()) {
-				coincide = true;
-			} else if (rdbDni.isSelected()) {
-				coincide = String.valueOf(c.getDni()).contains(filtro);
-			} else if (rdbApellido.isSelected()) {
-				coincide = c.getApellidos().toLowerCase().contains(filtro.toLowerCase());
-			}
-
-			if (coincide) {
+			if(filtro.isEmpty() || c.getApellidos().toLowerCase().contains(filtro.toLowerCase())) {
 				modeloBuscarCliente.addRow(new Object[] {
-					c.getDni(),
-					c.getNombres(),
-					c.getApellidos(),
-					c.getDireccion(),
-					c.getTelefono()
+						c.getDni(),
+						c.getNombres(),
+						c.getApellidos(),
+						c.getDireccion(),
+						c.getTelefono()
 				});
 			}
 		}
@@ -145,7 +118,7 @@ public class DialogBuscarClientes extends JDialog implements ActionListener {
 		int telefono = Integer.parseInt(tblBuscarClts.getValueAt(fila, 4).toString());
 
 		Clientes clientes = new Clientes(dni, nombres, apellido, direccion, telefono);
-		dlgClientes.cargarClienteDesdeBusqueda(clientes);
+		dlgIngresarSolicitud.cargarClienteDesdeBusqueda(clientes);
 		dispose();
 	}
 }
