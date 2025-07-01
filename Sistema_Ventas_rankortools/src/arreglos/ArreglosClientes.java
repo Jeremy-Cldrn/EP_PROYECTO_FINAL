@@ -51,7 +51,7 @@ public class ArreglosClientes {
 			String[] s;
 			String linea, nombres, apellidos, direccion;
 			int dni, telefono;
-			br= new BufferedReader(new FileReader("clientes.txt"));
+			br= new BufferedReader(new FileReader("data/clientes.txt"));
 				while((linea=br.readLine())!=null) {
 					s=linea.split(";");
 					dni = Integer.parseInt(s[0]);
@@ -72,7 +72,7 @@ public class ArreglosClientes {
 			PrintWriter pw;
 			String linea;
 			Clientes x;
-			pw = new PrintWriter(new FileWriter("clientes.txt"));
+			pw = new PrintWriter(new FileWriter("data/clientes.txt"));
 			for (int i = 0; i < tamanio(); i++) {
 				x=obtener(i);
 				linea = x.getDni()+";"+

@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 
 public class ArregloVentas {
-    private static final String ARCHIVO = "ventas.txt";
+    private static final String ARCHIVO = "data/ventas.txt";
 
     public void registrarVenta(Venta venta) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(ARCHIVO, true))) {

@@ -50,7 +50,7 @@ public class ArreglosProductos {
 			String linea, categoria, producto;
 			int codigo;
 			double precio;
-			br = new BufferedReader(new FileReader("productos.txt"));
+			br = new BufferedReader(new FileReader("data/productos.txt"));
 				while((linea=br.readLine())!=null) {
 					s=linea.split(";");
 		            codigo = Integer.parseInt(s[0]);
@@ -71,7 +71,7 @@ public class ArreglosProductos {
 			PrintWriter pw;
 			String linea;
 			Productos x;
-			pw = new PrintWriter(new FileWriter("productos.txt"));
+			pw = new PrintWriter(new FileWriter("data/productos.txt"));
 			for (int i = 0; i < tamanio(); i++) {
 				x=obtener(i);
 				linea = x.getCodigo()+";"+

@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.swing.SwingConstants;
 
 import arreglos.ArreglosProductos;
+import clases.Clientes;
 import clases.Productos;
 import clases.Venta;
 import arreglos.ArregloVentas;
@@ -29,6 +30,7 @@ import java.awt.event.ActionEvent;
 public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
+	private static final DialogBuscarClientes DialogBuscarClientes = null;
 	private JLabel lblVentaDeproductos;
 	private JLabel lblCategoria;
 	private JLabel lblProducto;
@@ -50,12 +52,12 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 	private JLabel lblApellidos;
 	private JLabel lblDireeccin;
 	private JLabel lblTelefono;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JButton btnNewButton;
+	private JTextField txtDni;
+	private JTextField txtNombres;
+	private JTextField txtApellidos;
+	private JTextField txtDireccion;
+	private JTextField txtTelefono;
+	private JButton btnBuscar;
 	private JSeparator separator;
 	private JSeparator separator_1;
 	private JSeparator separator_2;
@@ -64,6 +66,7 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 	private JSeparator separator_5;
 	private JSeparator separator_6;
 	private JSeparator separator_7;
+	private JButton btnLimpiar;
 
 
 	/**
@@ -76,6 +79,7 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 					DialogIngresarSolicitud dialog = new DialogIngresarSolicitud();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
+					dialog.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -148,7 +152,7 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 		
 		btnComprar = new JButton("COMPRAR");
 		btnComprar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnComprar.setBounds(423, 231, 105, 92);
+		btnComprar.setBounds(423, 231, 105, 41);
 		getContentPane().add(btnComprar);
 		
 		scr = new JScrollPane();
@@ -184,37 +188,37 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 		lblTelefono.setBounds(40, 172, 100, 19);
 		getContentPane().add(lblTelefono);
 		
-		textField = new JTextField();
-		textField.setText((String) null);
-		textField.setColumns(10);
-		textField.setBounds(130, 58, 96, 19);
-		getContentPane().add(textField);
+		txtDni = new JTextField();
+		txtDni.setText((String) null);
+		txtDni.setColumns(10);
+		txtDni.setBounds(130, 58, 96, 19);
+		getContentPane().add(txtDni);
 		
-		textField_1 = new JTextField();
-		textField_1.setText((String) null);
-		textField_1.setBounds(130, 87, 245, 19);
-		getContentPane().add(textField_1);
+		txtNombres = new JTextField();
+		txtNombres.setText((String) null);
+		txtNombres.setBounds(130, 87, 245, 19);
+		getContentPane().add(txtNombres);
 		
-		textField_2 = new JTextField();
-		textField_2.setText((String) null);
-		textField_2.setBounds(130, 116, 245, 19);
-		getContentPane().add(textField_2);
+		txtApellidos = new JTextField();
+		txtApellidos.setText((String) null);
+		txtApellidos.setBounds(130, 116, 245, 19);
+		getContentPane().add(txtApellidos);
 		
-		textField_3 = new JTextField();
-		textField_3.setText((String) null);
-		textField_3.setBounds(130, 145, 281, 19);
-		getContentPane().add(textField_3);
+		txtDireccion = new JTextField();
+		txtDireccion.setText((String) null);
+		txtDireccion.setBounds(130, 145, 281, 19);
+		getContentPane().add(txtDireccion);
 		
-		textField_4 = new JTextField();
-		textField_4.setText((String) null);
-		textField_4.setBounds(130, 174, 147, 19);
-		getContentPane().add(textField_4);
+		txtTelefono = new JTextField();
+		txtTelefono.setText((String) null);
+		txtTelefono.setBounds(130, 174, 147, 19);
+		getContentPane().add(txtTelefono);
 		
-		btnNewButton = new JButton("BUSCAR");
-		btnNewButton.addActionListener(this);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton.setBounds(427, 78, 101, 92);
-		getContentPane().add(btnNewButton);
+		btnBuscar = new JButton("BUSCAR");
+		btnBuscar.addActionListener(this);
+		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnBuscar.setBounds(427, 92, 101, 46);
+		getContentPane().add(btnBuscar);
 		
 		separator = new JSeparator();
 		separator.setForeground(Color.GRAY);
@@ -259,6 +263,12 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 		separator_7.setOrientation(SwingConstants.VERTICAL);
 		separator_7.setBounds(563, 45, 10, 163);
 		getContentPane().add(separator_7);
+		
+		btnLimpiar = new JButton("LIMPIAR");
+		btnLimpiar.addActionListener(this);
+		btnLimpiar.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnLimpiar.setBounds(423, 283, 105, 41);
+		getContentPane().add(btnLimpiar);
 
 		cboCategoria.addActionListener(e -> actualizarProductos());
 		btnComprar.addActionListener(e -> procesarCompra());
@@ -316,8 +326,16 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 	        String producto = cboProductos.getSelectedItem().toString();
 	        int cantidad = Integer.parseInt(txtCantidad.getText());
 	        double precio = Double.parseDouble(txtPrecio.getText());
+	        
+	        Clientes cliente = new Clientes(
+	                Integer.parseInt(txtDni.getText()),
+	                txtNombres.getText(),
+	                txtApellidos.getText(),
+	                txtDireccion.getText(),
+	                Integer.parseInt(txtTelefono.getText())
+	            );
 
-	        Venta venta = new Venta(categoria, producto, precio, cantidad);
+	        Venta venta = new Venta(categoria, producto, precio, cantidad, cliente);
 	        txtS.setText(venta.formatoBoleta());
 	        ventas.registrarVenta(venta);
 
@@ -326,14 +344,29 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 	    }
 	}
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnNewButton) {
-			actionPerformedBtnNewButton(e);
+		if (e.getSource() == btnLimpiar) {
+			actionPerformedBtnLimpiar(e);
+		}
+		if (e.getSource() == btnBuscar) {
+			actionPerformedBtnBuscar(e);
 		}
 	}
-	protected void actionPerformedBtnNewButton(ActionEvent e) {
-		DialogBuscarClientes dialogBuscarClientes = new DialogBuscarClientes(null);
+	protected void actionPerformedBtnBuscar(ActionEvent e) {
+		DialogBuscarClientes dialogBuscarClientes = new DialogBuscarClientes(this);
 		dialogBuscarClientes.setLocationRelativeTo(dialogBuscarClientes);
 		dialogBuscarClientes.setModal(true);
 		dialogBuscarClientes.setVisible(true);
+	}
+
+	public void cargarClienteDesdeBusqueda(Clientes c) {
+	    txtDni.setText(String.valueOf(c.getDni()));
+	    txtNombres.setText(c.getNombres());
+	    txtApellidos.setText(c.getApellidos());
+	    txtDireccion.setText(c.getDireccion());
+	    txtTelefono.setText(String.valueOf(c.getTelefono()));
+		
+	}
+	protected void actionPerformedBtnLimpiar(ActionEvent e) {
+		txtS.setText("");
 	}
 }

@@ -7,16 +7,26 @@ public class Venta {
 	    private double precio;
 	    private int cantidad;
 	    private double total;
+	    private Clientes cliente;
 
-	    public Venta(String categoria, String producto, double precio, int cantidad) {
+	    public Venta(String categoria, String producto, double precio, int cantidad, Clientes cliente) {
 	        this.categoria = categoria;
 	        this.producto = producto;
 	        this.precio = precio;
 	        this.cantidad = cantidad;
 	        this.total = precio * cantidad;
+	        this.cliente = cliente;
 	    }
 
-	    public String getCategoria() {
+	    public Clientes getCliente() {
+			return cliente;
+		}
+
+		public void setCliente(Clientes cliente) {
+			this.cliente = cliente;
+		}
+
+		public String getCategoria() {
 			return categoria;
 		}
 
@@ -57,17 +67,33 @@ public class Venta {
 		}
 
 		public String formatoBoleta() {
-	        return String.format("""
-	                BOLETA DE VENTA
-	                
-	                Categoría\t : %s
-	                Producto \t : %s
-	                Precio \t : S/ %.2f
-	                Cantidad \t : %d unidad%s
+		    return String.format("""
+		            BOLETA DE VENTA
 
-	                Total a pagar \t : S/ %.2f
-	                """, categoria, producto, precio, cantidad, (cantidad > 1 ? "es" : ""), total);
-	    }
+		            === DATOS DEL CLIENTE ===
+		            DNI       : %d
+		            Nombres   : %s
+		            Apellidos : %s
+		            Dirección : %s
+		            Teléfono  : %d
+
+		            === DETALLE DE COMPRA ===
+		            Categoría : %s
+		            Producto  : %s
+		            Precio    : S/ %.2f
+		            Cantidad  : %d unidad%s
+
+		            Total a pagar : S/ %.2f
+		            """,
+		            cliente.getDni(),
+		            cliente.getNombres(),
+		            cliente.getApellidos(),
+		            cliente.getDireccion(),
+		            cliente.getTelefono(),
+		            categoria, producto, precio, cantidad, (cantidad > 1 ? "es" : ""), total
+		    );
+		}
+
 
 	    public String toArchivo() {
 	        return categoria + ";" + producto + ";" + precio + ";" + cantidad + ";" + total;
