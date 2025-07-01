@@ -54,7 +54,7 @@ public class DialogClientes extends JDialog implements ActionListener {
 	 */
 	public DialogClientes() {
 		setTitle("Clientes");
-		setBounds(100, 100, 637, 450);
+		setBounds(0, -39, 674, 450);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
 		contentPane = new JPanel();
@@ -65,7 +65,7 @@ public class DialogClientes extends JDialog implements ActionListener {
 		lblMantenimientoClientes = new JLabel("MANTENIMIENTO CLIENTES");
 		lblMantenimientoClientes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMantenimientoClientes.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblMantenimientoClientes.setBounds(0, 0, 623, 35);
+		lblMantenimientoClientes.setBounds(0, 0, 657, 35);
 		lblMantenimientoClientes.setForeground(Color.WHITE);
 		lblMantenimientoClientes.setBackground(Color.BLACK);
 		lblMantenimientoClientes.setOpaque(true);
@@ -118,7 +118,7 @@ public class DialogClientes extends JDialog implements ActionListener {
 		contentPane.add(txtTelefono);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(37, 222, 544, 164);
+		scrollPane.setBounds(37, 222, 582, 164);
 		contentPane.add(scrollPane);
 
 		tblClientes = new JTable();
@@ -150,19 +150,19 @@ public class DialogClientes extends JDialog implements ActionListener {
 		btnAdicionar = new JButton("ADICIONAR");
 		btnAdicionar.addActionListener(this);
 		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnAdicionar.setBounds(463, 95, 118, 21);
+		btnAdicionar.setBounds(491, 94, 118, 21);
 		contentPane.add(btnAdicionar);
 		
 		btnModificar = new JButton("MODIFICAR");
 		btnModificar.addActionListener(this);
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnModificar.setBounds(463, 124, 118, 21);
+		btnModificar.setBounds(491, 123, 118, 21);
 		contentPane.add(btnModificar);
 		
 		btnEliminar = new JButton("ELIMINAR");
 		btnEliminar.addActionListener(this);
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnEliminar.setBounds(463, 152, 118, 21);
+		btnEliminar.setBounds(491, 152, 118, 21);
 		contentPane.add(btnEliminar);
 		
 		listar();

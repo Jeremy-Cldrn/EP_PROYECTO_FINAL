@@ -226,13 +226,56 @@ public class DialogProductos extends JDialog implements ActionListener {
 		return Double.parseDouble(txtPrecio.getText());
 	}
 	
-	//FUNCIONES CRUD
+	
 	private void adicionarProductos() {
-		Productos nuevo = new Productos(leerCodigo(), leerCategoria(), leerProducto(), leerPrecio());
-		ap.adicionar(nuevo);
-		listar();
-		limpiar();
+		String codigoStr = txtCodigo.getText().trim();
+		String precioStr = txtPrecio.getText().trim();
+
+		if (codigoStr.isEmpty()) {
+			mensaje("No se ingresó el código del producto.");
+			txtCodigo.requestFocus();
+			return;
+		}
+		if (precioStr.isEmpty()) {
+			mensaje("No se ingresó el precio del producto.");
+			txtPrecio.requestFocus();
+			return;
+		}
+
+		try {
+			int codigo = Integer.parseInt(codigoStr);
+			double precio = Double.parseDouble(precioStr);
+			String categoria = leerCategoria();
+			String producto = leerProducto();
+
+			// Verifica si el código ya existe
+			if (ap.buscarProductos(codigo) != null) {
+				mensaje("El código ya existe. Ingrese un código diferente.");
+				txtCodigo.requestFocus();
+				return;
+			}
+
+			// Verifica si ya existe un producto con la misma categoría y nombre
+			for (int i = 0; i < ap.tamanio(); i++) {
+				Productos p = ap.obtener(i);
+				if (p.getCategoria().equalsIgnoreCase(categoria) &&
+					p.getProducto().equalsIgnoreCase(producto)) {
+					mensaje("Ya existe un producto con esa categoría y nombre.");
+					return;
+				}
+			}
+
+			// Si todo está bien, se agrega el producto
+			Productos nuevo = new Productos(codigo, categoria, producto, precio);
+			ap.adicionar(nuevo);
+			listar();
+			limpiar();
+			mensaje("Producto agregado correctamente.");
+		} catch (NumberFormatException ex) {
+			mensaje("Código o precio inválido. Asegúrese de ingresar valores numéricos.");
+		}
 	}
+
 	
 	private void modificarProductos() {
 		int fila = tblProductos.getSelectedRow();
@@ -266,7 +309,7 @@ public class DialogProductos extends JDialog implements ActionListener {
 			mensaje("Seleccione fila a eliminar");
 			return;
 		}
-		int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+		int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION,2);
 		if (respuesta == JOptionPane.YES_OPTION) {
 			ap.eliminar(ap.obtener(fila));
 			listar();
