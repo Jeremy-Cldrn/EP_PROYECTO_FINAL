@@ -19,3 +19,4 @@ Herramientas Inalámbricas;Atornilladores;249.7;2;499.4
 >>>>>>> branch 'master' of https://github.com/Jeremy-Cldrn/EP_PROYECTO_FINAL.git
 Herramientas Inalámbricas;Atornilladores;249.7;12;2996.3999999999996
 Herramientas Inalámbricas;Atornilladores;249.7;2;499.4
+Herramientas Inalámbricas;Atornilladores;249.7;2;499.4
