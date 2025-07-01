@@ -194,7 +194,11 @@ public class DialogProductos extends JDialog implements ActionListener {
 		modeloProducto.setRowCount(0);
 		for (int i = 0; i < ap.tamanio(); i++) {
 			Productos p = ap.obtener(i);
-			modeloProducto.addRow(new Object[]{p.getCodigo(), p.getCategoria(), p.getProducto(), p.getPrecio()});
+			modeloProducto.addRow(
+				new Object[]{p.getCodigo(), 
+							 p.getCategoria(), 
+							 p.getProducto(), 
+							 p.getPrecio()});
 		}
 	}
 

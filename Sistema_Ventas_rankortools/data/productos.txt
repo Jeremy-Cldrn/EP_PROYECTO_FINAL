@@ -12,3 +12,4 @@
 3006;Herramientas Electricas;Sopladoras;150.0
 3007;Herramientas Electricas;Taladros;250.0
 3008;Herramientas Electricas;Tronzadoras;650.0
+3009;Herramientas Electricas;Cortadoras;950.0

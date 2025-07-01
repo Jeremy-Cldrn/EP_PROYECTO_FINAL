@@ -91,7 +91,7 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 	 */
 	public DialogIngresarSolicitud() {
 		setTitle("Ingresar solicitud");
-		setBounds(100, 100, 598, 636);
+		setBounds(100, 100, 599, 750);
 		getContentPane().setLayout(null);
 		
 		lblVentaDeproductos = new JLabel("VENTA DEPRODUCTOS");
@@ -100,7 +100,7 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 		lblVentaDeproductos.setForeground(Color.WHITE);
 		lblVentaDeproductos.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblVentaDeproductos.setBackground(Color.BLACK);
-		lblVentaDeproductos.setBounds(1, 1, 597, 34);
+		lblVentaDeproductos.setBounds(1, 1, 582, 34);
 		getContentPane().add(lblVentaDeproductos);
 		
 		lblCategoria = new JLabel("Categoria:");
@@ -155,7 +155,7 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 		getContentPane().add(btnComprar);
 		
 		scr = new JScrollPane();
-		scr.setBounds(21, 356, 544, 226);
+		scr.setBounds(21, 356, 544, 344);
 		getContentPane().add(scr);
 		
 		txtS = new JTextArea();
@@ -260,7 +260,7 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 		separator_7 = new JSeparator();
 		separator_7.setForeground(Color.GRAY);
 		separator_7.setOrientation(SwingConstants.VERTICAL);
-		separator_7.setBounds(563, 45, 10, 163);
+		separator_7.setBounds(563, 45, 150, 163);
 		getContentPane().add(separator_7);
 		
 		btnLimpiar = new JButton("LIMPIAR");
@@ -335,7 +335,7 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 	            );
 
 	        Venta venta = new Venta(categoria, producto, precio, cantidad, cliente);
-	        txtS.setText(venta.formatoBoleta());
+	        txtS.setText(venta.BoletaSimple());
 	        ventas.registrarVenta(venta);
 
 	    } catch (Exception e) {

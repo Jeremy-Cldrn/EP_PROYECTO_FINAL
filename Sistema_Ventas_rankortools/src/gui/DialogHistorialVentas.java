@@ -65,12 +65,12 @@ public class DialogHistorialVentas extends JDialog implements ActionListener {
 		scr.setViewportView(txtS);
 
 
-		mostrarHistorial1();
+		mostrarHistorial();
 
 	}
 
-	private void mostrarHistorial1() {
-		try (BufferedReader br = new BufferedReader(new FileReader("ventas.txt"))) {
+	private void mostrarHistorial() {
+		try (BufferedReader br = new BufferedReader(new FileReader("data/ventas.txt"))) {
 			StringBuilder contenido = new StringBuilder();
 			String linea;
 			int numVenta = 1;
@@ -80,19 +80,18 @@ public class DialogHistorialVentas extends JDialog implements ActionListener {
 					contenido.append("VENTA N° ").append(numVenta++).append("\n");
 					contenido.append("Categoría\t: ").append(datos[0]).append("\n");
 					contenido.append("Producto\t: ").append(datos[1]).append("\n");
-					contenido.append("Precio\t\t: S/ ").append(datos[2]).append("\n");
+					contenido.append("Precio\t: S/ ").append(datos[2]).append("\n");
 					contenido.append("Cantidad\t: ").append(datos[3]).append("\n");
-					contenido.append("Total\t\t: S/ ").append(datos[4]).append("\n");
+					contenido.append("Total\t: S/ ").append(datos[4]).append("\n");
 					contenido.append("----------------------------------------\n");
 				}
 			}
-			txtS.setText(contenido.toString()); // ✅ ESTA LÍNEA FALTABA
+			txtS.setText(contenido.toString()); 
 		} catch (IOException e) {
 			txtS.setText("No se pudo leer el archivo de ventas.");
 		}
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
