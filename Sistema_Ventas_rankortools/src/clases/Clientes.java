@@ -53,6 +53,10 @@ public class Clientes {
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-
+	
+	// metodo publico
+	public String nombreCompleto() {
+		return nombres + apellidos + "";
+	}
 
 	}
