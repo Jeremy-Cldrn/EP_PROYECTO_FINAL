@@ -41,7 +41,7 @@ public class DialogProductos extends JDialog implements ActionListener {
 
 	public DialogProductos() {
 		setTitle("Productos");
-		setBounds(0, -28, 637, 557);
+		setBounds(0, -28, 735, 557);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -49,7 +49,7 @@ public class DialogProductos extends JDialog implements ActionListener {
 		contentPane.setLayout(null);
 
 		lblMantenimientoProd = new JLabel("MANTENIMIENTO PRODUCTOS", SwingConstants.CENTER);
-		lblMantenimientoProd.setBounds(0, 0, 623, 34);
+		lblMantenimientoProd.setBounds(0, 0, 702, 34);
 		lblMantenimientoProd.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblMantenimientoProd.setForeground(Color.WHITE);
 		lblMantenimientoProd.setBackground(Color.BLACK);
@@ -57,35 +57,35 @@ public class DialogProductos extends JDialog implements ActionListener {
 		contentPane.add(lblMantenimientoProd);
 
 		lblCategoria = new JLabel("Categoria:");
-		lblCategoria.setBounds(27, 61, 93, 17);
+		lblCategoria.setBounds(58, 61, 93, 17);
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblCategoria);
 
 		lblProducto = new JLabel("Producto:");
-		lblProducto.setBounds(27, 92, 93, 17);
+		lblProducto.setBounds(58, 95, 93, 17);
 		lblProducto.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblProducto);
 
 		lblCdigo = new JLabel("Código:");
-		lblCdigo.setBounds(351, 61, 93, 17);
+		lblCdigo.setBounds(406, 61, 93, 17);
 		lblCdigo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblCdigo);
 
 		txtCodigo = new JTextField();
-		txtCodigo.setBounds(425, 62, 176, 19);
+		txtCodigo.setBounds(480, 62, 176, 19);
 		contentPane.add(txtCodigo);
 
 		lblPrecio = new JLabel("Precio:");
-		lblPrecio.setBounds(351, 95, 93, 17);
+		lblPrecio.setBounds(406, 95, 93, 17);
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		contentPane.add(lblPrecio);
 
 		txtPrecio = new JTextField();
-		txtPrecio.setBounds(425, 93, 176, 19);
+		txtPrecio.setBounds(480, 93, 176, 19);
 		contentPane.add(txtPrecio);
 
 		scr = new JScrollPane();
-		scr.setBounds(27, 145, 574, 289);
+		scr.setBounds(27, 145, 675, 289);
 		contentPane.add(scr);
 
 		tblProductos = new JTable();
@@ -106,30 +106,30 @@ public class DialogProductos extends JDialog implements ActionListener {
 		});
 
 		btnAdicionar = new JButton("ADICIONAR");
-		btnAdicionar.setBounds(70, 465, 114, 21);
+		btnAdicionar.setBounds(110, 465, 114, 21);
 		btnAdicionar.addActionListener(this);
 		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		contentPane.add(btnAdicionar);
 
 		btnModificar = new JButton("MODIFICAR");
-		btnModificar.setBounds(254, 465, 114, 21);
+		btnModificar.setBounds(302, 465, 114, 21);
 		btnModificar.addActionListener(this);
 		btnModificar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		contentPane.add(btnModificar);
 
 		btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.setBounds(438, 465, 114, 21);
+		btnEliminar.setBounds(491, 465, 114, 21);
 		btnEliminar.addActionListener(this);
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		contentPane.add(btnEliminar);
 
 		cboCategoria = new JComboBox<>();
-		cboCategoria.setBounds(141, 61, 176, 21);
+		cboCategoria.setBounds(175, 61, 176, 21);
 		cboCategoria.addActionListener(this);
 		contentPane.add(cboCategoria);
 
 		cboProductos = new JComboBox<>();
-		cboProductos.setBounds(141, 92, 176, 21);
+		cboProductos.setBounds(175, 93, 176, 21);
 		contentPane.add(cboProductos);
 
 		inicializarDatos();
