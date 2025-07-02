@@ -14,12 +14,12 @@ public class DialogTienda extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblLogo;
 	private JLabel lblDatosContacto;
-	private JLabel lblNewLabel;
-	private JLabel lblDansey;
-	private JLabel lblCercadoDeLima;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
+	private JLabel lblDirecicion1;
+	private JLabel lblDirecicion2;
+	private JLabel lblDirecicion3;
+	private JLabel lblTelefono;
+	private JLabel lblCelular;
+	private JLabel lblCorreo;
 	private JLabel lblMapa;
 	private JLabel lblUbicacion;
 	
@@ -70,35 +70,35 @@ public class DialogTienda extends JDialog {
 		lblDatosContacto.setFont(new Font("Tahoma", Font.BOLD, 24));
 		getContentPane().add(lblDatosContacto);
 		
-		lblNewLabel = new JLabel("Av. Guillermo");
-		lblNewLabel.setBounds(70, 252, 170, 24);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		getContentPane().add(lblNewLabel);
+		lblDirecicion1 = new JLabel("Av. Guillermo");
+		lblDirecicion1.setBounds(70, 252, 170, 24);
+		lblDirecicion1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		getContentPane().add(lblDirecicion1);
 		
-		lblDansey = new JLabel("Dansey 925,");
-		lblDansey.setBounds(70, 282, 170, 24);
-		lblDansey.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		getContentPane().add(lblDansey);
+		lblDirecicion2 = new JLabel("Dansey 925,");
+		lblDirecicion2.setBounds(70, 282, 170, 24);
+		lblDirecicion2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		getContentPane().add(lblDirecicion2);
 		
-		lblCercadoDeLima = new JLabel("Cercado de Lima");
-		lblCercadoDeLima.setBounds(70, 316, 170, 24);
-		lblCercadoDeLima.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		getContentPane().add(lblCercadoDeLima);
+		lblDirecicion3 = new JLabel("Cercado de Lima");
+		lblDirecicion3.setBounds(70, 316, 170, 24);
+		lblDirecicion3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		getContentPane().add(lblDirecicion3);
 		
-		lblNewLabel_1 = new JLabel("01-4037365");
-		lblNewLabel_1.setBounds(278, 252, 170, 24);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		getContentPane().add(lblNewLabel_1);
+		lblTelefono = new JLabel("01-4037365");
+		lblTelefono.setBounds(278, 252, 170, 24);
+		lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		getContentPane().add(lblTelefono);
 		
-		lblNewLabel_2 = new JLabel("(+51) 908 935 051");
-		lblNewLabel_2.setBounds(278, 282, 170, 24);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		getContentPane().add(lblNewLabel_2);
+		lblCelular = new JLabel("(+51) 908 935 051");
+		lblCelular.setBounds(278, 282, 170, 24);
+		lblCelular.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		getContentPane().add(lblCelular);
 		
-		lblNewLabel_3 = new JLabel("informes@rankortools.pe");
-		lblNewLabel_3.setBounds(278, 317, 193, 24);
-		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 15));
-		getContentPane().add(lblNewLabel_3);
+		lblCorreo = new JLabel("informes@rankortools.pe");
+		lblCorreo.setBounds(278, 317, 193, 24);
+		lblCorreo.setFont(new Font("Arial", Font.PLAIN, 15));
+		getContentPane().add(lblCorreo);
 		
 		lblMapa = new JLabel("");
 		lblMapa.setOpaque(true);
