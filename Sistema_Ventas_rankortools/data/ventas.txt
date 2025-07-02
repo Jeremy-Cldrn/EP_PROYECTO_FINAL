@@ -5,3 +5,13 @@ Herramientas Inalámbricas;Atornilladores;249.7;1;249.7
 Herramientas Inalámbricas;Llaves;899.8;1;899.8
 Herramientas Inalámbricas;Atornilladores;249.7;1;249.7
 Herramientas Inalámbricas;Atornilladores;249.7;1;249.7
+Herramientas Inalámbricas;Atornilladores;249.7;1;249.7
+Herramientas Inalámbricas;Atornilladores;249.7;1;249.7
+Herramientas Inalámbricas;Atornilladores;249.7;1;249.7
+Accesorios;Cinceles;25.0;15;375.0
+Accesorios;Cinceles;25.0;15;375.0
+Accesorios;Cinceles;25.0;15;375.0
+Accesorios;Cinceles;25.0;15;375.0
+Accesorios;Cinceles;25.0;15;375.0
+Accesorios;Cinceles;25.0;15;375.0
+Herramientas Inalámbricas;Atornilladores;249.7;1;249.7

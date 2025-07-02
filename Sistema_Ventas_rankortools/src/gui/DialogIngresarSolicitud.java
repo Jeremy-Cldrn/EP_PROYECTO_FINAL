@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane; 
+
 import java.awt.Color;
 import java.awt.Font;
 import java.util.HashMap;
@@ -270,7 +272,7 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 		getContentPane().add(btnLimpiar);
 
 		cboCategoria.addActionListener(e -> actualizarProductos());
-		btnComprar.addActionListener(e -> procesarCompra());
+		btnComprar.addActionListener(e -> procesarCompra()); // Aquí es donde se llama a procesarCompra
 		cboProductos.addActionListener(e -> actualizarPrecio());
 
 		inicializarDatos();
@@ -321,25 +323,46 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 
 	private void procesarCompra() {
 	    try {
+	        // Validaciones básicas de entrada
+	        if (txtDni.getText().isEmpty() || txtNombres.getText().isEmpty() || 
+	            txtApellidos.getText().isEmpty() || txtDireccion.getText().isEmpty() || 
+	            txtTelefono.getText().isEmpty() || txtCantidad.getText().isEmpty()) {
+	            JOptionPane.showMessageDialog(this, "Por favor, complete todos los datos del cliente y la cantidad.", "Datos Incompletos", JOptionPane.WARNING_MESSAGE);
+	            return; // Sale del método si faltan datos
+	        }
+	        
+	        int dni = Integer.parseInt(txtDni.getText());
+	        String nombres = txtNombres.getText();
+	        String apellidos = txtApellidos.getText();
+	        String direccion = txtDireccion.getText();
+	        int telefono = Integer.parseInt(txtTelefono.getText());
+	        
 	        String categoria = cboCategoria.getSelectedItem().toString();
 	        String producto = cboProductos.getSelectedItem().toString();
 	        int cantidad = Integer.parseInt(txtCantidad.getText());
 	        double precio = Double.parseDouble(txtPrecio.getText());
 	        
-	        Clientes cliente = new Clientes(
-	                Integer.parseInt(txtDni.getText()),
-	                txtNombres.getText(),
-	                txtApellidos.getText(),
-	                txtDireccion.getText(),
-	                Integer.parseInt(txtTelefono.getText())
-	            );
+	        // Validar cantidad mayor a 0
+	        if (cantidad <= 0) {
+	            JOptionPane.showMessageDialog(this, "La cantidad debe ser un número positivo.", "Cantidad Inválida", JOptionPane.WARNING_MESSAGE);
+	            return;
+	        }
 
+	        Clientes cliente = new Clientes(dni, nombres, apellidos, direccion, telefono);
 	        Venta venta = new Venta(categoria, producto, precio, cantidad, cliente);
-	        txtS.setText(venta.BoletaSimple());
-	        ventas.registrarVenta(venta);
+	        
+	        txtS.setText(venta.BoletaSimple()); // Muestra la boleta en el JTextArea
+	        ventas.registrarVenta(venta); // Registra la venta en tu arreglo de ventas
 
+	        //Confirmacion de compra
+	        JOptionPane.showMessageDialog(this, "¡Compra realizada con éxito!", "Compra Exitosa", JOptionPane.INFORMATION_MESSAGE);
+
+	    } catch (NumberFormatException e) {
+	        JOptionPane.showMessageDialog(this, "Error en el formato de números (DNI, Teléfono, Cantidad).", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+	        e.printStackTrace();
 	    } catch (Exception e) {
-	        txtS.setText("Error al procesar la compra. Verifique los datos.");
+	        JOptionPane.showMessageDialog(this, "Error al procesar la compra. Verifique los datos o inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+	        e.printStackTrace();
 	    }
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -367,5 +390,15 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 	}
 	protected void actionPerformedBtnLimpiar(ActionEvent e) {
 		txtS.setText("");
+		txtDni.setText("");
+		txtNombres.setText("");
+		txtApellidos.setText("");
+		txtDireccion.setText("");
+		txtTelefono.setText("");
+		txtCantidad.setText("");
+		txtPrecio.setText("");
+		cboCategoria.setSelectedIndex(0); // Reinicia la categoría
+		// cboProductos se actualizará automáticamente
 	}
+
 }

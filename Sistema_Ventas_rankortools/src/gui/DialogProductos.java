@@ -124,12 +124,12 @@ public class DialogProductos extends JDialog implements ActionListener {
 		contentPane.add(btnEliminar);
 
 		cboCategoria = new JComboBox<>();
-		cboCategoria.setBounds(175, 61, 176, 21);
+		cboCategoria.setBounds(156, 61, 195, 21);
 		cboCategoria.addActionListener(this);
 		contentPane.add(cboCategoria);
 
 		cboProductos = new JComboBox<>();
-		cboProductos.setBounds(175, 93, 176, 21);
+		cboProductos.setBounds(156, 93, 195, 21);
 		contentPane.add(cboProductos);
 
 		inicializarDatos();
