@@ -190,27 +190,32 @@ public class DialogIngresarSolicitud extends JDialog implements ActionListener {
 		getContentPane().add(lblTelefono);
 		
 		txtDni = new JTextField();
+		txtDni.setEditable(false);
 		txtDni.setText((String) null);
 		txtDni.setColumns(10);
 		txtDni.setBounds(130, 58, 96, 19);
 		getContentPane().add(txtDni);
 		
 		txtNombres = new JTextField();
+		txtNombres.setEditable(false);
 		txtNombres.setText((String) null);
 		txtNombres.setBounds(130, 87, 245, 19);
 		getContentPane().add(txtNombres);
 		
 		txtApellidos = new JTextField();
+		txtApellidos.setEditable(false);
 		txtApellidos.setText((String) null);
 		txtApellidos.setBounds(130, 116, 245, 19);
 		getContentPane().add(txtApellidos);
 		
 		txtDireccion = new JTextField();
+		txtDireccion.setEditable(false);
 		txtDireccion.setText((String) null);
 		txtDireccion.setBounds(130, 145, 281, 19);
 		getContentPane().add(txtDireccion);
 		
 		txtTelefono = new JTextField();
+		txtTelefono.setEditable(false);
 		txtTelefono.setText((String) null);
 		txtTelefono.setBounds(130, 174, 147, 19);
 		getContentPane().add(txtTelefono);

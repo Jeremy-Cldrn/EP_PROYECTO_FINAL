@@ -1,5 +1,5 @@
 74125896;Juan;Pérez García;Av. Siempre Viva 123;987654321
-82361475;María;López Ramos;Jr. Los Pinos 456;912345678
+82361475;María;López Ramos;Jr. Los Pinos 458;912345678
 70392184;Carlos;Huamán Torres;Calle Lima 789;956789123
 67843592;Lucía;Reyes Díaz;Av. Arequipa 987;934567812
 71534826;Pedro;Quispe Salas;Jr. San Martín 321;945612378
@@ -8,3 +8,5 @@
 71938465;Valeria;Cáceres Chacón;Av. El Sol 800;918273645
 73481596;Miguel;Sánchez Núñez;Jr. Huancayo 101;975318264
 76849213;Diana;Vargas León;Av. Grau 555;964512387
+70392184;Carlos;Huamán Torres;Calle Lima 789;956789123
+71938465;Valeria;Cáceres Chacón;Av. El Sol 800;918273645
