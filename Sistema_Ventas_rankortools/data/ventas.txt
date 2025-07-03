@@ -19,3 +19,4 @@ Herramientas Inalámbricas;Atornilladores;249.7;4;998.8
 Accesorios;Discos;10.0;9;90.0
 Herramientas Electricas;Sierras;399.0;2;798.0
 Accesorios;Cinceles;25.0;5;125.0
+Herramientas Inalámbricas;Atornilladores;249.7;4;998.8
