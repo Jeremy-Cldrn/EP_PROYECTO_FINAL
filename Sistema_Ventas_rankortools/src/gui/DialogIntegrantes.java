@@ -19,6 +19,7 @@ public class DialogIntegrantes extends JDialog {
 	private JLabel lblIntegrante3;
 	private JLabel lblIntegrante4;
 	private JLabel lblIntegrante5;
+	private JLabel lblGrupoC;
 
 	/**
 	 * Launch the application.
@@ -57,7 +58,7 @@ public class DialogIntegrantes extends JDialog {
 		lblIntegrantes = new JLabel("INTEGRANTES");
 		lblIntegrantes.setForeground(Color.WHITE);
 		lblIntegrantes.setFont(new Font("Tahoma", Font.BOLD, 28));
-		lblIntegrantes.setBounds(182, 59, 215, 24);
+		lblIntegrantes.setBounds(182, 25, 215, 24);
 		getContentPane().add(lblIntegrantes);
 		
 		lblIntegrante2 = new JLabel(" Jeremy Calderon Calderon Chavez ");
@@ -84,6 +85,12 @@ public class DialogIntegrantes extends JDialog {
 		lblIntegrante4.setBounds(171, 353, 241, 34);
 		getContentPane().add(lblIntegrante4);
 		
+		lblGrupoC = new JLabel("Grupo C");
+		lblGrupoC.setForeground(Color.WHITE);
+		lblGrupoC.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblGrupoC.setBounds(226, 76, 126, 33);
+		getContentPane().add(lblGrupoC);
+		
 		lblFondo = new JLabel("");
 		lblFondo.setBounds(0, 0, 579, 435);
 		getContentPane().add(lblFondo);
@@ -93,5 +100,4 @@ public class DialogIntegrantes extends JDialog {
 		lblFondo.setIcon(new ImageIcon(imgFondo));
 
 	}
-
 }
